@@ -153,9 +153,9 @@ const Home = () => {
     <div>
       <div style={styles.banner}>
         <button style={styles.signout} onClick={handleSignOut}>Sign Out</button>
-        <img src='/nobglogo.png' style={styles.image} alt="" />
+        <img src='/nobglogo.png' style={styles.image} />
       </div>
-
+  
       <div style={styles.container}>
         <div style={styles.header}>
           <h3 style={styles.headercell}>SNO</h3>
@@ -165,17 +165,20 @@ const Home = () => {
           <h3 style={styles.headercell}>Doctor Name</h3>
         </div>
       </div>
-      
       <div style={styles.scrollView}>
-        {currentPageData.map((item) => (
-          <div key={item.sno} style={styles.row}>
-            <div style={styles.cell}>{item.sno}</div>
-            <div style={styles.cell}>{item.name}</div>
-            <div style={styles.cell}>{getWaitNoStatus(item.waitno)}</div>
-            <div style={styles.cell}>{item.docdept}</div>
-            <div style={styles.cell}>{item.docname}</div>
-          </div>
-        ))}
+        {data.length === 0 ? (
+          <div style={{ textAlign: 'center', padding: '20px' }}>Patient list is empty</div>
+        ) : (
+          currentPageData.map((item) => (
+            <div key={item.sno} style={styles.row}>
+              <div style={styles.cell}>{item.sno}</div>
+              <div style={styles.cell}>{item.name}</div>
+              <div style={styles.cell}>{getWaitNoStatus(item.waitno)}</div>
+              <div style={styles.cell}>{item.docdept}</div>
+              <div style={styles.cell}>{item.docname}</div>
+            </div>
+          ))
+        )}
       </div>
     </div>
   );
